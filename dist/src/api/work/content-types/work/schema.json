@@ -1,0 +1,40 @@
+{
+    "kind": "collectionType",
+    "collectionName": "works",
+    "info": {
+        "singularName": "work",
+        "pluralName": "works",
+        "displayName": "Work"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "title": {
+            "type": "string",
+            "required": true
+        },
+        "slug": {
+            "type": "uid",
+            "targetField": "title",
+            "required": true
+        },
+        "description": {
+            "type": "text"
+        },
+        "projectUrl": {
+            "type": "string"
+        },
+        "tags": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::tag.tag"
+        },
+        "featuredImage": {
+            "type": "media",
+            "multiple": false,
+            "required": true
+        }
+    }
+}

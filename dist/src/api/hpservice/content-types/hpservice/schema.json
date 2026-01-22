@@ -1,0 +1,36 @@
+{
+    "kind": "collectionType",
+    "collectionName": "hpservices",
+    "info": {
+        "singularName": "hpservice",
+        "pluralName": "hpservices",
+        "displayName": "Hpservice"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "slug": {
+            "type": "uid"
+        },
+        "title": {
+            "type": "string"
+        },
+        "subservices": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::tag.tag"
+        },
+        "image": {
+            "type": "media",
+            "multiple": false,
+            "allowedTypes": [
+                "images",
+                "files",
+                "videos",
+                "audios"
+            ]
+        }
+    }
+}
