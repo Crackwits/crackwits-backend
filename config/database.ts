@@ -2,10 +2,10 @@ import path from 'path';
 
 export default ({ env }) => {
   // Default to mysql2 instead of sqlite
-  const client = env('DATABASE_CLIENT', 'mysql2');
+  const client = env('DATABASE_CLIENT', 'mysql');
 
   const connections = {
-    mysql2: {
+    mysql: {
       connection: {
         host: env('DATABASE_HOST'),
         port: env.int('DATABASE_PORT', 3306),
