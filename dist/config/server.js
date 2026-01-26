@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = ({ env }) => ({
-    host: env('HOST', '0.0.0.0'),
-    port: env.int('PORT', 1337),
+    host: '0.0.0.0',
+    port: 1337,
+    url: 'https://cms.crackwits.com',
     app: {
         keys: env.array('APP_KEYS'),
     },

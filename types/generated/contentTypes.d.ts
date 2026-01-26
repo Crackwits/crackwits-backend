@@ -430,6 +430,77 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiEmployeeSignatureIconEmployeeSignatureIcon
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'employee_signature_icons';
+  info: {
+    displayName: 'Employee Signature Icon';
+    pluralName: 'employee-signature-icons';
+    singularName: 'employee-signature-icon';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    icons: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::employee-signature.employee-signature'
+    >;
+    imageUrl: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::employee-signature-icon.employee-signature-icon'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiEmployeeSignatureEmployeeSignature
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'employee_signatures';
+  info: {
+    displayName: 'Employee Signature';
+    pluralName: 'employee-signatures';
+    singularName: 'employee-signature';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    employee_signature_icon: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::employee-signature-icon.employee-signature-icon'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::employee-signature.employee-signature'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    phone: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiHpserviceHpservice extends Struct.CollectionTypeSchema {
   collectionName: 'hpservices';
   info: {
@@ -1062,6 +1133,8 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::employee-signature-icon.employee-signature-icon': ApiEmployeeSignatureIconEmployeeSignatureIcon;
+      'api::employee-signature.employee-signature': ApiEmployeeSignatureEmployeeSignature;
       'api::hpservice.hpservice': ApiHpserviceHpservice;
       'api::project.project': ApiProjectProject;
       'api::tag.tag': ApiTagTag;

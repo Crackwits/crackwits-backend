@@ -25,7 +25,13 @@
     },
     "slug": {
       "type": "uid",
-      "required": true
+      "required": false
+    },
+    "employee_signature_icon": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::employee-signature-icon.employee-signature-icon",
+      "inversedBy": "icons"
     }
   }
 }

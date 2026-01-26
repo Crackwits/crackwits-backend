@@ -5,15 +5,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const path_1 = __importDefault(require("path"));
 exports.default = ({ env }) => {
-    const client = env('DATABASE_CLIENT', 'sqlite');
+    // Default to mysql2 instead of sqlite
+    const client = env('DATABASE_CLIENT', 'mysql');
     const connections = {
         mysql: {
             connection: {
-                host: env('DATABASE_HOST', 'localhost'),
+                host: env('DATABASE_HOST'),
                 port: env.int('DATABASE_PORT', 3306),
-                database: env('DATABASE_NAME', 'strapi'),
-                user: env('DATABASE_USERNAME', 'strapi'),
-                password: env('DATABASE_PASSWORD', 'strapi'),
+                database: env('DATABASE_NAME'),
+                user: env('DATABASE_USERNAME'),
+                password: env('DATABASE_PASSWORD'),
                 ssl: env.bool('DATABASE_SSL', false) && {
                     key: env('DATABASE_SSL_KEY', undefined),
                     cert: env('DATABASE_SSL_CERT', undefined),
@@ -23,7 +24,10 @@ exports.default = ({ env }) => {
                     rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', true),
                 },
             },
-            pool: { min: env.int('DATABASE_POOL_MIN', 2), max: env.int('DATABASE_POOL_MAX', 10) },
+            pool: {
+                min: env.int('DATABASE_POOL_MIN', 2),
+                max: env.int('DATABASE_POOL_MAX', 10),
+            },
         },
         postgres: {
             connection: {
@@ -43,7 +47,10 @@ exports.default = ({ env }) => {
                 },
                 schema: env('DATABASE_SCHEMA', 'public'),
             },
-            pool: { min: env.int('DATABASE_POOL_MIN', 2), max: env.int('DATABASE_POOL_MAX', 10) },
+            pool: {
+                min: env.int('DATABASE_POOL_MIN', 2),
+                max: env.int('DATABASE_POOL_MAX', 10),
+            },
         },
         sqlite: {
             connection: {

@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "employee_signature_icons",
+  "info": {
+    "singularName": "employee-signature-icon",
+    "pluralName": "employee-signature-icons",
+    "displayName": "Employee Signature Icon"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "imageUrl": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "required": false
+    },
+    "icons": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::employee-signature.employee-signature",
+      "mappedBy": "employee_signature_icon"
+    }
+  }
+}
