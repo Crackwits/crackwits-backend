@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "hpservices",
+  "collectionName": "hpclients",
   "info": {
-    "singularName": "hpservice",
-    "pluralName": "hpservices",
-    "displayName": "Hpservice"
+    "singularName": "hpclient",
+    "pluralName": "hpclients",
+    "displayName": "Hpclient"
   },
   "options": {
     "draftAndPublish": true
@@ -12,17 +12,16 @@
   "pluginOptions": {},
   "attributes": {
     "slug": {
-      "type": "uid"
+      "type": "uid",
+      "targetField": "name"
     },
-    "title": {
+    "name": {
       "type": "string"
     },
-    "subservices": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::tag.tag"
+    "link": {
+      "type": "string"
     },
-    "image": {
+    "logo": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
@@ -31,9 +30,6 @@
         "videos",
         "audios"
       ]
-    },
-    "description": {
-      "type": "blocks"
     }
   }
 }

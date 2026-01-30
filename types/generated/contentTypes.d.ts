@@ -501,6 +501,37 @@ export interface ApiEmployeeSignatureEmployeeSignature
   };
 }
 
+export interface ApiHpclientHpclient extends Struct.CollectionTypeSchema {
+  collectionName: 'hpclients';
+  info: {
+    displayName: 'Hpclient';
+    pluralName: 'hpclients';
+    singularName: 'hpclient';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    link: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::hpclient.hpclient'
+    > &
+      Schema.Attribute.Private;
+    logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'name'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiHpserviceHpservice extends Struct.CollectionTypeSchema {
   collectionName: 'hpservices';
   info: {
@@ -515,6 +546,7 @@ export interface ApiHpserviceHpservice extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    description: Schema.Attribute.Blocks;
     image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -1135,6 +1167,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::employee-signature-icon.employee-signature-icon': ApiEmployeeSignatureIconEmployeeSignatureIcon;
       'api::employee-signature.employee-signature': ApiEmployeeSignatureEmployeeSignature;
+      'api::hpclient.hpclient': ApiHpclientHpclient;
       'api::hpservice.hpservice': ApiHpserviceHpservice;
       'api::project.project': ApiProjectProject;
       'api::tag.tag': ApiTagTag;
